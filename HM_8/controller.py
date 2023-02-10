@@ -36,4 +36,3 @@ def The_process():
         elif choice == 6:
             print("До встречи!")
             break
-        print (main_dct)
