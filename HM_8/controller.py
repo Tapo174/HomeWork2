@@ -1,6 +1,5 @@
 import process
 
-
 main_dct = {}
 students_name = []
 lessons = []
@@ -28,7 +27,7 @@ def The_process():
                 main_dct[name][lesson] = []
         elif choice == 3:
             name, lesson, mark = process.new_mark()
-            main_dct[name][lessons].append
+            main_dct[name][lesson].append(mark)
         elif choice == 4:
             print (main_dct)
         elif choice == 5:
