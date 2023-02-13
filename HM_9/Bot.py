@@ -17,18 +17,16 @@ def button(message):
         but1 = types.KeyboardButton("Сыграть в конфетки")
         markup.add(but1)
         bot.send_message(message.chat.id, "Выбери ниже", reply_markup=markup)
-    # elif message.text == "no":
-    #     bot.send_message(message.chat.id, "Спрошу еще раз...")
-    #     bot.send_message(message.chat.id, "Вызвать меню?  yes/no ")
-    #     start
+    elif message.text == "no":
+        bot.send_message(message.chat.id, "Спрошу еще раз...")
+        start(message)
     elif message.text == "Сыграть в конфетки":
         bot.send_message(message.chat.id, "Стартуем")
         #time.sleep(3)
         rules(message)
-    # elif message.text != "no" and message.text != "Сыграть в конфетки" and message.text != "yes":
-    #     bot.send_message(message.chat.id, "Что-то не так...")
-    #     bot.send_message(message.chat.id, "Вызвать меню?  yes/no ")
-    #     start
+    elif message.text != "no" and message.text != "Сыграть в конфетки" and message.text != "yes":
+        bot.send_message(message.chat.id, "Что-то не так...")
+        start(message)
 
 
 @bot.message_handler(content_types= ["text"])
@@ -45,8 +43,9 @@ def the_game(message):
             bot.send_message(message.chat.id,"Ваш ход")
             bot.send_message(message.chat.id,f'конфет осталость {sweets}, сколько возьмёте?')
             bot.register_next_step_handler(message, players_turn)
-            if num <= 28 and num <= sweets:
-                sweets = sweets - num
+            sweet_num = num
+            if sweet_num <= 28 and sweet_num <= sweets:
+                sweets = sweets - sweet_num
             else:
                 bot.send_message(message.chat.id,"Неверное количество конфет")
 
@@ -59,7 +58,6 @@ def rules(message):
     #time.sleep(3)
     the_game(message)
 
-@bot.message_handler(content_types= ["text"])
 def players_turn(message):
     global num
     num = int(message.text)
