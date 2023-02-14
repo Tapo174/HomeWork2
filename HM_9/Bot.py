@@ -5,11 +5,13 @@ import time
 
 bot = telebot.TeleBot("6017611869:AAEM_yakYTP_mTG8zPhSKponIsVjtWwaN0k")
 
-sweets = 2021
+sweets = 130
+max_sweets = 28
 
 @bot.message_handler(commands = ["start"])
 def start(message):
     bot.send_message(message.chat.id, "Вызвать меню?  yes/no ")
+
 
 @bot.message_handler(content_types= ["text"])
 def button(message):
@@ -23,41 +25,36 @@ def button(message):
         start(message)
     elif message.text == "Сыграть в конфетки":
         bot.send_message(message.chat.id, "Стартуем")
-        #time.sleep(3)
+        time.sleep(3) #имитация ожидания
         rules(message)
     elif message.text != "no" and message.text != "Сыграть в конфетки" and message.text != "yes":
         bot.send_message(message.chat.id, "Что-то не так...")
         start(message)
 
 
-#@bot.message_handler(content_types= ["text"])
-def the_game(message):
+def first_turn(message):
     Player = "Вы"
     Bot = "Бот"
-    cur_turn = random.choice([Player])
+    cur_turn = random.choice([Player, Bot])
     bot.send_message(message.chat.id,"Выбираю, кто ходит первым...")
-    #time.sleep(2)
+    time.sleep(2)
     bot.send_message(message.chat.id,f'Первым ходит: {cur_turn}')
-    # global sweets
-    # sweets = 2021
-    if sweets > 0:
-        if cur_turn == Player: 
-            players_turn(message, sweets)
-        if cur_turn == Bot:
-            pass
-
+    if cur_turn == Player: 
+        players_turn(message)
+    elif cur_turn == Bot:
+        bot_turn(message)
 
 
 def rules(message):
     bot.send_message(message.chat.id, "Правила игры:\n\
         Перед вами 2021 конфета, вам предстоить отобрать их у бота, но за один ход можно брать не больше 28 конфет, кто первый заберёт последние конфеты считает победителем!\n\
         Удачи!")
-    #time.sleep(3)
-    the_game(message)
+    time.sleep(3) 
+    first_turn(message)
 
 
 @bot.message_handler(content_types= ["text"])
-def players_turn(message, sweets):
+def players_turn(message):
     bot.send_message(message.chat.id,"Ваш ход")
     bot.send_message(message.chat.id,f'конфет осталость {sweets}, сколько возьмёте?')
     bot.register_next_step_handler(message, sweets_count)
@@ -65,19 +62,39 @@ def players_turn(message, sweets):
 
 @bot.message_handler(content_types= ["text"])
 def sweets_count(message):
-    global num
+    global sweets
+    global max_sweets
     num = int(message.text)
-    sweets_take(message, sweets)
-
-def sweets_take(message, sweets):
     sweet_num = num
-    if sweet_num <= 28 and sweet_num <= sweets:
+    if sweet_num <= max_sweets and sweet_num < sweets:
         sweets = sweets - sweet_num
         bot.send_message(message.chat.id,f'Конфет сталось {sweets}')
-
+        bot_turn(message)
+    elif sweet_num == sweets:
+        sweets = sweets - sweet_num
+        bot.send_message(message.chat.id,f'Конфет сталось {sweets}')
+        bot.send_message(message.chat.id,"Победа!")
     else:
-        bot.send_message(message.chat.id,"Неверное количество конфет")
+        bot.send_message(message.chat.id,"Неверное количество конфет, введите ещё раз")
+        players_turn(message)
 
 
+def bot_turn(message):
+    global sweets
+    global max_sweets
+    sweet_num = random.randint(1, max_sweets)
+    if sweet_num <= max_sweets and sweet_num < sweets:
+        sweets = sweets - sweet_num
+        time.sleep(2)
+        bot.send_message(message.chat.id,f'Бот взял {sweet_num}')
+        players_turn(message)
+    elif sweet_num >= sweets:
+        sweet_num == sweets
+        bot.send_message(message.chat.id,f'Бот взял {sweets}')
+        time.sleep(2)
+        sweets = sweets - sweet_num
+        bot.send_message(message.chat.id,f'Конфет сталось {sweets}')
+        bot.send_message(message.chat.id,"Поражение...")
+    
 
 bot.infinity_polling()
