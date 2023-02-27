@@ -1,4 +1,4 @@
-package HM_1;
+package Java.HM_1;
 import java.util.Scanner;
 public class HM_1 {
     public static void main(String[] args) {
@@ -7,6 +7,6 @@ public class HM_1 {
         int user_input = in.nextInt();
         int res = (user_input*(user_input+1))/2;
         System.out.println(res);
+        in.close();
     }
-    
 }
