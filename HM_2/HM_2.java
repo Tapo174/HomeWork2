@@ -1,5 +1,5 @@
 //Реализовать функцию возведения числа а в степень b. a, b ∈ Z. Сводя количество выполняемых действий к минимуму. 
-package Java.HM_2;
+package HM_2;
 import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package Java.HM_3;
+package HM_3;
 import java.util.Random;
 
 public class HM_3 {
