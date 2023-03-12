@@ -14,7 +14,7 @@ public class HM_6 {
         var start = new Wave(the_map.get_map());
         start.wave_alg(new Start(1, 1));
  
-        //System.out.println(Printing.print_map(the_map.get_map()));
+        System.out.println(Printing.print_map(the_map.get_map()));
 
 
     }
