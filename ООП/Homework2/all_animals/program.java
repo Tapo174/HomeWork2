@@ -1,6 +1,5 @@
 package all_animals;
 
-import java.lang.ref.Cleaner;
 import java.util.Scanner;
 
 public class program {
