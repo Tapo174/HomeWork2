@@ -13,6 +13,6 @@ public abstract class wildAnimals extends animal{
     public abstract void voice();
 
     public String toString(){
-        return String.format("%s\nМесто обитания: %s \nДата нахождения: %s", super.toString(), this.inhabitancy, this.date);
+        return String.format("%s \nМесто обитания: %s \nДата нахождения: %s", super.toString(), this.inhabitancy, this.date);
     }
 }

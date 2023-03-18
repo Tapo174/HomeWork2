@@ -22,6 +22,6 @@ public class dog extends pets{
     }
 
     public String toString(){
-        return String.format("%s \nСобака: %s\nДрессировка:%s", super.toString(), this.train);
+        return String.format("Собака  %s\nДрессировка:%s", super.toString(), this.train);
     }
 }

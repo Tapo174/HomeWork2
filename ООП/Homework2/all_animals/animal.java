@@ -14,6 +14,6 @@ public abstract class animal{
     public abstract void voice();
 
     public String toString(){
-        return String.format("%d \nРост: %d \nВес: %d \nЦвет глаз: %s", this.height, this.weight, this.eyes_color);
+        return String.format("\nРост: %d \nВес: %d \nЦвет глаз: %s", this.height, this.weight, this.eyes_color);
     }
 }

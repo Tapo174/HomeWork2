@@ -7,10 +7,10 @@ public class tiger extends wildAnimals {
     }
 
     public void voice() {
-        System.out.println("РррРрР");
+        System.out.println("\nРррРрР");
     }
 
     public String toString(){
-        return String.format("%s\nТигр: %s", super.toString());
+        return String.format("Тигр: %s", super.toString());
     }
 }

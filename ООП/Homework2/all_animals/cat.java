@@ -14,10 +14,10 @@ public  class cat extends pets{
     }
 
     public void voice(){
-        System.out.println("Мяу");
+        System.out.println("\nМяу");
     }
 
     public String toString(){
-        return String.format("%s\nЦвет шерсти: %s", super.toString(), this.coat_color);
+        return String.format("Кот %s \nЦвет шерсти: %s", super.toString(), this.coat_color);
     }
 }

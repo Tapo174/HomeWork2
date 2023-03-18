@@ -7,7 +7,7 @@ public class stork extends birds {
     }
 
     public void fly() {
-        String.format("%sВысота полёта: %d метров", super.flight_altitude);
+        String.format("Высота полёта: %d метров", super.flight_altitude);
     }
 
     public void voice() {
@@ -15,7 +15,7 @@ public class stork extends birds {
     }
 
     public String toString(){
-        return String.format("%s \nАист: %s", super.toString());
+        return String.format("Аист: %s", super.toString());
     }
     
 }

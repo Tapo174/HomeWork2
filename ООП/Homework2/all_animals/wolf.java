@@ -10,10 +10,10 @@ public class wolf extends wildAnimals{
     }
 
     public void voice() {
-        System.out.println("Ауууу");
+        System.out.println("\nАуууу");
     }
 
     public String toString(){
-        return String.format("%s\nВолк: %s\nВожак:%s", super.toString(), this.pack_leader);
+        return String.format("Волк: %s \nВожак: %s", super.toString(), this.pack_leader);
     }
 }

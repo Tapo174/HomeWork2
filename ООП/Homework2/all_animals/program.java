@@ -1,17 +1,18 @@
 package all_animals;
 
+import java.lang.ref.Cleaner;
 import java.util.Scanner;
 
 public class program {
     public static void main(String[] args) {
         Zoo animals = new Zoo();
         Scanner input = new Scanner(System.in);
-        Menu(animals,input);
+        Menu(animals, input);
         input.close();
     }
 
     private static void Menu(Zoo animals, Scanner input) {
-        System.out.print("Выберите пункт меню: ");
+        System.out.print("\nВыберите пункт меню: \n");
         System.out.println("1. Добавить животное в зоопарк");
         System.out.println("2. Удалить животное из зоопарка");
         System.out.println("3. Просмотреть информацию о животном");
@@ -41,13 +42,14 @@ public class program {
                 animals.animal_say();
                 Menu(animals, input);
             case 7:
+                System.out.println("Возвращайтесь!");
                 break;
         }
     }
 
     private static void animals_voice(Zoo animals, Scanner input) {
         animals.show_animals();
-        System.out.printf("%d)\n", Zoo.all_animals.size());
+        System.out.printf("%d\n В меню", Zoo.all_animals.size());
         System.out.println("Введите номер животного, которого хотите послушать: ");
         int choice = input.nextInt();
         if (choice < Zoo.all_animals.size()) {
@@ -58,12 +60,12 @@ public class program {
 
     private static void animal_info(Zoo animals, Scanner input) {
         animals.show_animals();
-        System.out.printf("%d)\n", Zoo.all_animals.size());
-        System.out.println("Введите номер животного, о котором хотите узнать: ");
+        System.out.printf("%d) В меню", Zoo.all_animals.size());
+        System.out.println("\nВведите номер животного, о котором хотите узнать: ");
         int choice = input.nextInt();
         if (choice < Zoo.all_animals.size()){
             animals.get_animal(choice);
-            animal_info(animals, input);
+            Menu(animals, input);
         }
     }
 
@@ -74,13 +76,12 @@ public class program {
         int choice = input.nextInt();
         if (choice < Zoo.all_animals.size()){
             animals.remove_animal(choice);
-            System.out.println("Удалён");
-            animal_info(animals, input);
+            System.out.println("\nУдалён");
         } else Menu(animals, input);
     }
 
     private static void add_animal(Zoo animals, Scanner input) {
-        System.out.print("Выберите пункт меню: ");
+        System.out.println("\nВыберите пункт меню: ");
         System.out.println("1. Добавить кота");
         System.out.println("2. Добавить тигра");
         System.out.println("3. Добавить собаку");

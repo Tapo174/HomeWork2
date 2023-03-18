@@ -16,7 +16,7 @@ public abstract class pets extends animal implements pet{
     }
 
     public String toString(){
-        return String.format("%s\nИмя: %s\nПорода: %s\nНаличие прививок: %s\nЦвет шерсти: %s\nДата рождения: %s", this.name, this.breed, this.vaccination, this.Bday, super.toString());
+        return String.format("\nИмя: %s\nПорода: %s\nНаличие прививок: %s \nДата рождения: %s", this.name, this.breed, this.vaccination, this.Bday, super.toString());
     }
 
     public abstract void voice();
